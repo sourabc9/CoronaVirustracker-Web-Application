@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Covid-19 (CoronaVirus) Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    
+    <style>
+        .jumbotron{
+        background: #F0F8FF;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+        <h1>Coronavirus Tracker</h1>
+        <p>This application lists the total number of Coronavirus cases and increase in cases on a daily bases across the world</p>
+<!--        <p th:text="${testName}">Welcome to our grocery store!</p>-->
+        <div class="jumbotron">
+            <h3>Total Cases as of today</h3>
+            <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+            <hr class="my-4">
+            <p>
+                <span>New cases reported since previous date</span>
+                <span th:text="${totalReportedNewCases}"></span>
+            </p>
+        </div>
+        <table class="tables">
+            <tr>
+                <th>State</th>
+                <th>Country</th>
+                <th>Total Cases</th>
+                <th>Increase since last day</th>
+            </tr>
+            <tr th:each="locationStat : ${locationStats}">
+                <td th:text="${locationStat.state}"></td>
+                <td th:text="${locationStat.country}"></td>
+                <td th:text="${locationStat.latestTotalCases}">0</td>
+                <td th:text="${locationStat.diffFromPreviousDay}">0</td>
+            </tr>
+        </table>
+        </div>
+</body>
+
+</html>
